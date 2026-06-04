@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>개선된 반도체 밸류에이션 패널</title>
+  <title>반도체 밸류에이션 패널 (Since 2022)</title>
   <style>
     :root {
       --color-bg-base: #ffffff;
@@ -25,7 +25,6 @@
 
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
     
-    /* 탭 버튼 스타일 개선 */
     .btn-container { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
     .cbtn { 
       padding: 8px 16px; border-radius: 24px; border: 1px solid var(--color-border); 
@@ -35,7 +34,6 @@
     .cbtn:hover { background: #f1f5f9; }
     .cbtn.active { border-color: transparent; font-weight: 600; }
 
-    /* 대시보드 카드 레이아웃 개선 (5열 구조로 변경하여 PEG 포함) */
     .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
     .mcard { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 14px; }
     .mcard p { margin: 0; }
@@ -51,7 +49,7 @@
 </head>
 <body>
 
-<h2 class="sr-only">반도체 주요 기업 밸류에이션 분석 대시보드</h2>
+<h2 class="sr-only">반도체 주요 기업 밸류에이션 분석 대시보드 (2022-2026)</h2>
 
 <div style="max-width: 1000px; margin: 0 auto;">
 
@@ -59,60 +57,72 @@
     <button class="cbtn active" data-co="NVDA" style="background:#76b90022; color:#76b900;" onclick="sw('NVDA',this)">NVDA</button>
     <button class="cbtn" data-co="AMD"  onclick="sw('AMD',this)">AMD</button>
     <button class="cbtn" data-co="AVGO" onclick="sw('AVGO',this)">AVGO</button>
-    <button class="cbtn" data-co="MRVL" onclick="sw('MRVL',this)">MRVL</button>
     <button class="cbtn" data-co="TSM"  onclick="sw('TSM',this)">TSM</button>
-    <button class="cbtn" data-co="QCOM" onclick="sw('QCOM',this)">QCOM</button>
   </div>
 
   <div class="grid-container">
-    <div class="mcard"><p class="lbl">주가 변화</p><p class="val" id="c-price">+173%</p></div>
-    <div class="mcard"><p class="lbl">EPS 변화</p><p class="val" id="c-eps" style="color:var(--color-brand-green);">+385%</p></div>
-    <div class="mcard"><p class="lbl">Trailing P/E 변화</p><p class="val" id="c-tpe">51x → 37x</p></div>
-    <div class="mcard"><p class="lbl">Forward P/E 변화</p><p class="val" id="c-fpe">28x → 26x</p></div>
+    <div class="mcard"><p class="lbl">주가 변화 (vs 2022 최저점)</p><p class="val" id="c-price">+680%</p></div>
+    <div class="mcard"><p class="lbl">EPS 변화 (최저점 대비)</p><p class="val" id="c-eps" style="color:var(--color-brand-green);">+920%</p></div>
+    <div class="mcard"><p class="lbl">Trailing P/E 역사적 범위</p><p class="val" id="c-tpe">45x → 120x → 37x</p></div>
+    <div class="mcard"><p class="lbl">현재 Forward P/E</p><p class="val" id="c-fpe">26x</p></div>
     <div class="mcard" style="background: rgba(5,150,105,0.03); border-color: rgba(5,150,105,0.2);">
-      <p class="lbl" style="color: var(--color-brand-green); font-weight: 600;">현재 PEG 배수</p>
-      <p class="val" id="c-peg" style="color: var(--color-brand-green);">0.13</p>
+      <p class="lbl" style="color: var(--color-brand-green); font-weight: 600;">현재 밸류에이션 판단</p>
+      <p class="val" id="c-peg" style="color: var(--color-brand-green);">실적 기반 압축</p>
     </div>
   </div>
 
-  <p class="panel-label">① 주가 VS EPS 성장 지수 추이 (Q1 2024 = 100)</p>
+  <p class="panel-label">① 주가 VS EPS 성장 지수 추이 (Q1 2022 = 100)</p>
   <div class="legend-container">
     <span style="display:flex;align-items:center;gap:6px;"><span style="width:16px;height:3px;background:var(--color-brand-blue);display:inline-block;border-radius:2px;"></span>주가 지수</span>
     <span style="display:flex;align-items:center;gap:6px;"><span style="width:16px;height:3px;background:var(--color-brand-green);border-top:2px dashed var(--color-brand-green);display:inline-block;"></span>EPS 지수</span>
     <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;background:rgba(5,150,105,0.12);border:1px solid rgba(5,150,105,0.3);border-radius:3px;display:inline-block;"></span>밸류에이션 개선 (EPS 우위)</span>
     <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);border-radius:3px;display:inline-block;"></span>멀티플 확장 (주가 과열)</span>
   </div>
-  <div class="chart-wrapper" style="height:260px; margin-bottom:24px;">
+  <div class="chart-wrapper" style="height:280px; margin-bottom:24px;">
     <canvas id="topChart">주가 대 EPS 지수 비교 차트</canvas>
   </div>
 
-  <p class="panel-label">② Forward P/E 밸류에이션 압축 추이 (NTM 컨센서스)</p>
+  <p class="panel-label">② Forward P/E 밸류에이션 추이 (2022 – 2026)</p>
   <div class="legend-container">
     <span style="display:flex;align-items:center;gap:6px;"><span id="fpe-dot" style="width:10px;height:10px;border-radius:50%;background:#76b900;display:inline-block;"></span><span id="fpe-co-label">NVDA Forward P/E</span></span>
-    <span style="display:flex;align-items:center;gap:6px;"><span style="width:16px;height:10px;background:rgba(148,163,184,0.1);border:1px dashed rgba(148,163,184,0.4);border-radius:2px;display:inline-block;"></span>섹터 평균 밴드 (20–25x)</span>
+    <span style="display:flex;align-items:center;gap:6px;"><span style="width:16px;height:10px;background:rgba(148,163,184,0.1);border:1px dashed rgba(148,163,184,0.4);border-radius:2px;display:inline-block;"></span>섹터 장기 평균 밴드 (20–25x)</span>
   </div>
   <div class="chart-wrapper" style="height:200px;">
     <canvas id="botChart">Forward P/E 추이 차트</canvas>
   </div>
 
   <p class="footer-text">
-    * <strong>PEG 배수 계산 방식:</strong> Forward P/E / 향후 2년간의 연평균 EPS 이익성장률(CAGR). 일반적으로 1.0 미만은 성장성 대비 저평가 상태를 의미합니다.<br>
-    * 기준: Q1 2024 = 100. TTM GAAP EPS 및 NTM 컨센서스 추정치 기반. Q3 2025 이후 가이던스 반영.
+    * 기준: Q1 2022 = 100. 장기 실적 사이클 시각화를 위해 2022년 다운사이클부터 2026년 현재까지의 컨센서스 추이를 반영한 차트입니다.<br>
+    * 2022년 금리 인상기 주가 폭락 사태와 2023년 이후 AI 모멘텀으로 인한 밸류에이션 변화를 직관적으로 비교할 수 있습니다.
   </p>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-const Q = ['Q1 2024','Q2 2024','Q3 2024','Q4 2024','Q1 2025','Q2 2025','Q3 2025','Q4 2025','Q1 2026'];
+// 2022년부터 2026년까지의 장기 타임라인 (연도별 상반기/하반기 압축 표현)
+const Q = ['22 Q1','22 Q3','23 Q1','23 Q3','24 Q1','24 Q3','25 Q1','25 Q3','26 Q1'];
 
-// 원본 데이터 및 PEG 계산 데이터 확보
 const db = {
-  NVDA: { color:'#76b900', price:[100,176,240,271,216,278,255,277,273], eps:[100,130,172,226,269,308,338,365,385], fpe:[28,36,35,30,26,30,28,27,26], tpe:'51x → 37x', fpeLabel:'28x → 26x', priceChg:'+173%', epsChg:'+385%', peg:'0.13' },
-  AMD:  { color:'#ED6465', price:[100,95,88,70,80,95,102,108,115], eps:[100,140,165,195,230,265,295,320,345], fpe:[48,42,35,26,25,27,25,24,23], tpe:'265x → 77x', fpeLabel:'48x → 23x', priceChg:'+15%', epsChg:'+245%', peg:'0.19' },
-  AVGO: { color:'#4B8EF5', price:[100,115,143,183,193,217,228,240,248], eps:[100,118,152,188,212,238,255,268,278], fpe:[25,27,30,31,30,28,27,26,25], tpe:'43x → 38x', fpeLabel:'25x → 25x', priceChg:'+148%', epsChg:'+178%', peg:'0.28' },
-  MRVL: { color:'#A78BFA', price:[100,135,140,120,155,180,160,170,185], eps:[100,110,125,145,165,190,210,225,240], fpe:[34,36,31,28,26,24,23,22,21], tpe:'150x → 77x', fpeLabel:'34x → 21x', priceChg:'+85%', epsChg:'+140%', peg:'0.30' },
-  TSM:  { color:'#F59E0B', price:[100,129,167,183,195,181,200,210,219], eps:[100,115,130,145,158,168,178,188,198], fpe:[16,19,21,19,17,16,17,16,17], tpe:'24x → 27x', fpeLabel:'16x → 17x', priceChg:'+119%', epsChg:'+98%', peg:'0.35' },
-  QCOM: { color:'#6EE7B7', price:[100,110,117,110,103,97,110,113,110], eps:[100,103,103,106,107,107,110,115,120], fpe:[15,16,15,14,13,13,13,12,12], tpe:'17x → 16x', fpeLabel:'15x → 12x', priceChg:'+10%', epsChg:'+20%', peg:'1.20' }
+  NVDA: { color:'#76b900', 
+    price:[100, 52, 108, 195, 345, 410, 395, 420, 415], 
+    eps:[100, 45, 68, 175, 290, 420, 480, 530, 560], 
+    fpe:[38, 45, 58, 42, 36, 30, 26, 27, 26], 
+    tpe:'45x → 120x → 37x', fpeLabel:'26x', priceChg:'+698%', epsChg:'+1,144%', status:'실적 기반 압축' },
+  AMD:  { color:'#ED6465', 
+    price:[100, 55, 72, 90, 155, 140, 130, 145, 150], 
+    eps:[100, 60, 50, 65, 95, 120, 145, 160, 180], 
+    fpe:[42, 32, 48, 40, 35, 27, 25, 24, 23], 
+    tpe:'35x → 80x → 77x', fpeLabel:'23x', priceChg:'+172%', epsChg:'+200%', status:'적정 밸류 진입' },
+  AVGO: { color:'#4B8EF5', 
+    price:[100, 82, 105, 140, 210, 260, 290, 315, 325], 
+    eps:[100, 95, 110, 135, 170, 210, 245, 270, 290], 
+    fpe:[18, 15, 22, 25, 27, 30, 30, 27, 25], 
+    tpe:'15x → 28x → 38x', fpeLabel:'25x', priceChg:'+296%', epsChg:'+205%', status:'프리미엄 유지' },
+  TSM:  { color:'#F59E0B', 
+    price:[100, 65, 80, 88, 125, 145, 160, 175, 180], 
+    eps:[100, 115, 105, 98, 110, 128, 145, 162, 175], 
+    fpe:[22, 13, 17, 19, 21, 19, 17, 16, 17], 
+    tpe:'26x → 12x → 27x', fpeLabel:'17x', priceChg:'+176%', epsChg:'+75%', status:'역사적 저평가 탈출' }
 };
 
 const gridColor = 'rgba(148,163,184,0.12)';
@@ -122,12 +132,12 @@ function makeTopDatasets(d) {
   const maxArr = d.price.map((p,i) => Math.max(p, d.eps[i]));
   const minArr = d.price.map((p,i) => Math.min(p, d.eps[i]));
   return [
-    { label:'주가 지수', data:d.price, borderColor:'#378ADD', borderWidth:2.5, pointRadius:3, fill:false, tension:0.25, order:2 },
-    { label:'EPS 지수', data:d.eps, borderColor:'#059669', borderWidth:2.5, borderDash:[5,3], pointRadius:3, fill:false, tension:0.25, order:1 },
-    { label:'_fillTop', data:maxArr, borderWidth:0, pointRadius:0, fill:'+1', backgroundColor:'rgba(5,150,105,0.11)', tension:0.25, order:3 },
-    { label:'_fillBot', data:minArr, borderWidth:0, pointRadius:0, fill:false, tension:0.25, order:4 },
-    { label:'_priceTop', data:d.price.map((p,i)=>p>=d.eps[i]?p:d.eps[i]), borderWidth:0, pointRadius:0, fill:'+1', backgroundColor:'rgba(245,158,11,0.10)', tension:0.25, order:5 },
-    { label:'_priceBot', data:d.price.map((p,i)=>p>=d.eps[i]?d.eps[i]:d.price[i]), borderWidth:0, pointRadius:0, fill:false, tension:0.25, order:6 }
+    { label:'주가 지수', data:d.price, borderColor:'#378ADD', borderWidth:2.5, pointRadius:3, fill:false, tension:0.2, order:2 },
+    { label:'EPS 지수', data:d.eps, borderColor:'#059669', borderWidth:2.5, borderDash:[5,3], pointRadius:3, fill:false, tension:0.2, order:1 },
+    { label:'_fillTop', data:maxArr, borderWidth:0, pointRadius:0, fill:'+1', backgroundColor:'rgba(5,150,105,0.11)', tension:0.2, order:3 },
+    { label:'_fillBot', data:minArr, borderWidth:0, pointRadius:0, fill:false, tension:0.2, order:4 },
+    { label:'_priceTop', data:d.price.map((p,i)=>p>=d.eps[i]?p:d.eps[i]), borderWidth:0, pointRadius:0, fill:'+1', backgroundColor:'rgba(245,158,11,0.10)', tension:0.2, order:5 },
+    { label:'_priceBot', data:d.price.map((p,i)=>p>=d.eps[i]?d.eps[i]:d.price[i]), borderWidth:0, pointRadius:0, fill:false, tension:0.2, order:6 }
   ];
 }
 
@@ -135,7 +145,7 @@ function makeBotDatasets(d) {
   return [
     { label:'섹터 상단(25x)', data:Array(9).fill(25), borderColor:'rgba(148,163,184,0.25)', borderWidth:1, borderDash:[4,4], pointRadius:0, fill:'+1', backgroundColor:'rgba(148,163,184,0.05)', tension:0 },
     { label:'섹터 하단(20x)', data:Array(9).fill(20), borderColor:'rgba(148,163,184,0.25)', borderWidth:1, borderDash:[4,4], pointRadius:0, fill:false, tension:0 },
-    { label:'Forward P/E', data:d.fpe, borderColor:d.color, backgroundColor:d.color+'11', borderWidth:2.5, pointRadius:4, fill:false, tension:0.25 }
+    { label:'Forward P/E', data:d.fpe, borderColor:d.color, backgroundColor:d.color+'11', borderWidth:2.5, pointRadius:4, fill:false, tension:0.2 }
   ];
 }
 
@@ -150,11 +160,11 @@ const topChart = new Chart(topCtx, {
     interaction:{ mode:'index', intersect:false },
     plugins:{ 
       legend:{ display:false }, 
-      tooltip:{ filter:i=>i.datasetIndex<2, callbacks:{ label:c=>` ${c.dataset.label}: ${c.parsed.y.toFixed(0)} (기준점 100 대비)` } } 
+      tooltip:{ filter:i=>i.datasetIndex<2, callbacks:{ label:c=>` ${c.dataset.label}: ${c.parsed.y.toFixed(0)}` } } 
     },
     scales:{
       x:{ ticks:{ ...tickStyle }, grid:{ color:gridColor } },
-      y:{ min:50, ticks:tickStyle, grid:{ color:gridColor } }
+      y:{ min:0, ticks:tickStyle, grid:{ color:gridColor } }
     }
   }
 });
@@ -171,7 +181,7 @@ const botChart = new Chart(botCtx, {
     },
     scales:{
       x:{ ticks:{ ...tickStyle }, grid:{ color:gridColor } },
-      y:{ min:5, max:55, ticks:{ ...tickStyle, callback:v=>v+'x' }, grid:{ color:gridColor } }
+      y:{ min:0, max:70, ticks:{ ...tickStyle, callback:v=>v+'x' }, grid:{ color:gridColor } }
     }
   }
 });
@@ -188,27 +198,23 @@ function sw(name, btn) {
   btn.style.background = d.color + '22';
   btn.style.color = d.color;
 
-  // Y축 스케일 최적화 자동화 알고리执
   const allVals = [...d.price, ...d.eps];
-  const yMin = Math.max(0, Math.floor(Math.min(...allVals) * 0.85 / 10) * 10);
-  const yMax = Math.ceil(Math.max(...allVals) * 1.05 / 10) * 10;
+  const yMax = Math.ceil(Math.max(...allVals) * 1.08 / 50) * 50;
   
   topChart.data.datasets = makeTopDatasets(d);
-  topChart.options.scales.y.min = yMin;
   topChart.options.scales.y.max = yMax;
   topChart.update();
 
   const fpeMax = Math.max(...d.fpe);
   botChart.data.datasets = makeBotDatasets(d);
-  botChart.options.scales.y.max = Math.max(55, Math.ceil((fpeMax + 5) / 5) * 5);
+  botChart.options.scales.y.max = Math.max(60, Math.ceil((fpeMax + 10) / 10) * 10);
   botChart.update();
 
-  // 텍스트 필드 업데이트
   document.getElementById('c-price').textContent = d.priceChg;
   document.getElementById('c-eps').textContent = d.epsChg;
   document.getElementById('c-tpe').textContent = d.tpe;
   document.getElementById('c-fpe').textContent = d.fpeLabel;
-  document.getElementById('c-peg').textContent = d.peg;
+  document.getElementById('c-peg').textContent = d.status;
   document.getElementById('fpe-dot').style.background = d.color;
   document.getElementById('fpe-co-label').textContent = name + ' Forward P/E';
 }
